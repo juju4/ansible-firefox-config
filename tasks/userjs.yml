@@ -9,12 +9,18 @@
     mode: '0644'
     backup: yes
 
+- name: Check if firefox.js exists
+  stat:
+    path: "{{ fxjs_path }}"
+  register: fxjs
+
 - name: Install pyllyukko harden user.js
   copy:
     src: "{{ fxjs_path }}.orig"
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
+  when: not fxjs.stats.exist
 
 - name: Configure as default pref
   replace:
