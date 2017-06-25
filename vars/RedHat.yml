@@ -1,0 +1,4 @@
+---
+
+fxroot_ext: /usr/lib64/firefox/browser/extensions
+fxjs_path: /etc/firefox/firefox.js

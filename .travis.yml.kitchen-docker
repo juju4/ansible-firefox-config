@@ -1,0 +1,52 @@
+---
+dist: trusty
+sudo: required
+rvm:
+  - 2.2
+
+env:
+#  - distribution: centos
+#    version: 6
+#  - distribution: centos
+#    version: 7
+  - distribution: ubuntu
+    version: 16.04
+  - distribution: ubuntu
+    version: 14.04
+#  - distribution: ubuntu
+#    version: 12.04
+#  - distribution: alpine
+#    version: 3.4
+#  - distribution: debian
+#    version: 8
+
+before_install:
+  - env
+  - pwd
+  - find -ls
+## use appropriate role path and not github name
+  - "[ -f get-dependencies.sh ] && sh -x get-dependencies.sh"
+  - sudo pip install ansible
+## need to use chef gem for some reason? BAD PATH https://github.com/chef/chef-dk/issues/15
+#  - chef gem install kitchen
+  - gem install kitchen
+  - gem install kitchen-ansible
+  - gem install kitchen-sync
+  - gem install kitchen-docker
+  - gem list
+  - which kitchen
+  - KITCHEN_YAML=.kitchen.docker.yml kitchen diagnose --all
+
+script:
+## avoid locale issue under xenial docker, https://github.com/pypa/pip/issues/3575
+  - export LC_ALL=C.UTF-8
+  - export LANG=C.UTF-8
+  - KITCHEN_YAML=.kitchen.docker.yml kitchen verify ${distribution}-${version//./}
+
+#after_failure:
+#  - "systemctl -l status"
+#  - "journalctl -xe --no-pager"
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+

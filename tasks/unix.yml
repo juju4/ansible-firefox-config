@@ -1,0 +1,44 @@
+---
+## https://developer.mozilla.org/en-US/Firefox/Enterprise_deployment
+## http://www.fvue.nl/wiki/Ansible:_Install_Firefox_extension
+## http://askubuntu.com/questions/73474/how-to-install-firefox-addon-from-command-line-in-scripts
+## http://kb.mozillazine.org/Installing_extensions
+
+- name: Include system-specific variables
+  include_vars: "{{ ansible_system }}.yml"
+- name: Include RedHat-specific variables
+  include_vars: "RedHat.yml"
+  when: ansible_os_family == 'RedHat'
+
+- name: Ensure package firefox is installed
+  package: pkg=firefox state=present
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+
+- name: Unix | Download extensions
+#  local_action: >
+#      command "rsync -Cavz firefox/extensions/AdblockEdge/{fe272bd1-5f76-4ea4-8501-a05d35d823fc} me@{{ inventory_hostname }}:/home/me/.mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/"
+  get_url:
+    url: "{{ item.u }}"
+    dest: "{{ fxext_dl_repo }}/{{ item.u | basename }}"
+    mode: '0644'
+  with_items: "{{ fxext_list }}"
+  ignore_errors: true
+
+- name: Unix | Ensure Mozilla Firefox distribution extensions directory exists
+  file:
+#    path: "%ProgramFiles%\\Mozilla Firefox\\distribution\\extensions"
+    path: "{{ fxroot_ext }}"
+    state: directory
+
+- name: Unix | install extensions
+  copy:
+    src: "{{ fxext_dl_repo }}/{{ item.u | basename }}"
+#   dest: "/Applications/Firefox.app/Contents/Resources/browser/extensions/{{ item.id }}"
+#    dest: "{{ fxroot_ext }}/{{ item.id }}" NOK
+    dest: "{{ fxroot_ext }}/{{ item.id }}.xpi"
+    mode: '0644'
+    remote_src: yes
+  with_items: "{{ fxext_list }}"
+
+- include: userjs.yml
+  when: fx_harden_userjs

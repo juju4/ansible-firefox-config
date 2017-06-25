@@ -1,0 +1,7 @@
+---
+
+- include: unix.yml
+  when: ansible_os_family != "Windows"
+
+- include: windows-firefox.yml
+  when: ansible_os_family == "Windows"
