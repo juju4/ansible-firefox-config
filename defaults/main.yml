@@ -8,3 +8,4 @@ fxext_list:
     - { u: 'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/addon-607454-latest.xpi', id: 'uBlock0@raymondhill.net' }
 
 fx_harden_userjs: true
+fxjs_lockpref: false
