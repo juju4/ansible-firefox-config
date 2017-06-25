@@ -13,5 +13,5 @@ fx_userjs = '/etc/firefox/firefox.js'
 
 describe file("#{fx_userjs}") do
   it { should be_file }
-  it { should be_mode 0644 }
+  it { should be_mode '644' }
 end
