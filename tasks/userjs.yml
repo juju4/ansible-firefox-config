@@ -1,10 +1,17 @@
 ---
 ## https://github.com/pyllyukko/user.js/
 
-- name: Install pyllyukko harden user.js
+- name: Download pyllyukko harden user.js
   get_url:
     url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
     checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
+    dest: "{{ fxjs_path }}.orig"
+    mode: '0644'
+    backup: yes
+
+- name: Install pyllyukko harden user.js
+  copy:
+    src: "{{ fxjs_path }}.orig"
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
