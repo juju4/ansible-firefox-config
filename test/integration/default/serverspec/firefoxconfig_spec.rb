@@ -13,9 +13,9 @@ fxext_dir = '/usr/lib/firefox-addons/extensions'
 
 describe file("#{fxext_dir}/https-everywhere@eff.org.xpi") do
   it { should be_file }
-  it { should be_mode 0644 }
+  it { should be_mode '644' }
 end
 describe file("#{fxext_dir}/uBlock0@raymondhill.net.xpi") do
   it { should be_file }
-  it { should be_mode 0644 }
+  it { should be_mode '644' }
 end
