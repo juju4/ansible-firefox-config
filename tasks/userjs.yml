@@ -20,7 +20,7 @@
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
-  when: not fxjs.stats.exist
+  when: not fxjs.stat.exists
 
 - name: Configure as default pref
   replace:
