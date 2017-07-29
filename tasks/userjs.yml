@@ -38,4 +38,8 @@
     backup: yes
   when: fxjs_lockpref
 
-# cas.sh ?
+## cas.sh ? only apply to user profile ~/.mozilla/firefox/XXXXXXXX.current_profile
+# https://github.com/pyllyukko/user.js/blob/master/CAs.md
+# copy cert8.db to browser/defaults/profile
+# https://mike.kaply.com/2013/05/13/more-major-changes-coming-in-firefox-21/
+# https://mike.kaply.com/2012/03/30/customizing-firefox-default-profiles/
