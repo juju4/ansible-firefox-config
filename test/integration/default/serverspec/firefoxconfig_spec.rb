@@ -10,6 +10,9 @@ set :backend, :exec
 #end
 
 fxext_dir = '/usr/lib/firefox-addons/extensions'
+if os[:family] == 'redhat'
+  fxext_dir = '/usr/lib64/firefox/browser/extensions'
+end
 
 describe file("#{fxext_dir}/https-everywhere@eff.org.xpi") do
   it { should be_file }
