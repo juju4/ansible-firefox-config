@@ -3,9 +3,13 @@
 fxext_dl_repo: /var/_install
 fxext_list:
 ## HTTPS Everywhere
-    - { u: 'https://addons.mozilla.org/firefox/downloads/latest/https-everywhere/addon-229918-latest.xpi', id: 'https-everywhere@eff.org' }
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/890494/https_everywhere-2018.3.13-an+fx.xpi', id: 'https-everywhere@eff.org' }
 ## uBlock Origin
-    - { u: 'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/addon-607454-latest.xpi', id: 'uBlock0@raymondhill.net' }
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/894392/ublock_origin-1.15.16-an+fx.xpi', id: 'uBlock0@raymondhill.net' }
+## Screengrab
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/828008/screengrab-2.11-an+fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
+## Privacy Badger
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/855336/privacy_badger-2018.2.5-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
 
 fx_harden_userjs: true
 fxjs_lockpref: false
