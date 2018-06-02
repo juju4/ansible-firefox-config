@@ -8,8 +8,8 @@ env:
 ## those images need pre-configuration before being usable (openssh...)
 #  - distribution: centos
 #    version: 6
-#  - distribution: centos
-#    version: 7
+  - distribution: centos
+    version: 7
   - distribution: ubuntu
     version: 18.04
   - distribution: ubuntu
@@ -59,9 +59,8 @@ before_install:
   - ls ~/.ssh
   - ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -P ""
 ## sudo/su get us a non-usual PATH ...
+  - '[ "X${distribution}" == "Xcentos" ] && sudo -E su $USER -c "sh -x ./test/lxd/centos-ssh-image.sh" || true'
   - sudo -E su $USER -c "env"
-## The command "sudo -E su $USER -c "which kitchen"" failed and exited with 1 during .
-#  - sudo -E su $USER -c "which kitchen"
   - sudo -E su $USER -c "env PATH=$PATH kitchen diagnose --all"
 #  - sudo -E su $USER -c "kitchen diagnose --all"
 #  - sudo -E -u $USER kitchen diagnose --all
