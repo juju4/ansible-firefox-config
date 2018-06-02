@@ -1,39 +1,78 @@
 ---
 dist: trusty
-language: python
-python: "2.7"
+sudo: required
+rvm:
+  - 2.4
+
+env:
+## those images need pre-configuration before being usable (openssh...)
+#  - distribution: centos
+#    version: 6
+  - distribution: centos
+    version: 7
+  - distribution: ubuntu
+    version: 18.04
+  - distribution: ubuntu
+    version: 16.04
+  - distribution: ubuntu
+    version: 14.04
+  - distribution: ubuntu
+    version: 12.04
+#  - distribution: alpine
+#    version: 3.4
+
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
- - "[ -f get-dependencies.sh ] && sh -x get-dependencies.sh"
-## for local travis execution as we use same default.yml than kitchen
- - mkdir /tmp/kitchen
-## serverspec test
- - sudo apt-get install -qq ruby2.0 rake
- - sudo gem2.0 install serverspec
-install:
-  - pip install ansible
-  - ansible --version
-  - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
-  - gem2.0 --version
+  - env
+  - pwd
+  - find -ls
+## use appropriate role path and not github name
+  - "[ -f get-dependencies.sh ] && sh -x get-dependencies.sh"
+## No Xenial, https://github.com/travis-ci/travis-ci/issues/5821
+#  - sudo apt install lxd
+  - echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse" | sudo tee /etc/apt/sources.list.d/trusty-backports.list
+  - sudo apt-get update -qq
+  - sudo apt -t trusty-backports -y install lxd acl -q
+## change of group implies logout+login to apply... can't do with travis = run as root (sic)
+## https://github.com/travis-ci/travis-ci/issues/1839   or chain: sudo -E su $USER -c "..."
+  - sudo usermod -G lxd travis
+  # Pull container
+#  - lxc remote add images images.linuxcontainers.org
+  - sudo -E su $USER -c "lxc remote list"
+  - sudo -E su $USER -c "lxc image list"
+## pre-download base images
+  - 'sudo -E su $USER -c "[ ${distribution} == ubuntu ] || lxc image copy images:${distribution}/${version}/amd64 local: --alias=${distribution}-${version}"'
+  - 'sudo -E su $USER -c "[ ${distribution} == ubuntu ] && lxc image copy ubuntu:${version} local: --alias=${distribution}-${version}" || true'
+## configure lxd-bridge
+  - sudo perl -pi -e 's@^LXD_IPV4_ADDR=""@LXD_IPV4_ADDR="10.252.116.1"@;s@^LXD_IPV4_NETMASK=""@LXD_IPV4_NETMASK="255.255.255.0"@;s@^LXD_IPV4_NETWORK=""@LXD_IPV4_NETWORK="10.252.116.1/24"@;s@^LXD_IPV4_DHCP_RANGE=""@LXD_IPV4_DHCP_RANGE="10.252.116.2,10.252.116.254"@;s@^LXD_IPV4_DHCP_MAX=""@LXD_IPV4_DHCP_MAX="252"@;s@LXD_IPV6_PROXY="true"@LXD_IPV6_PROXY="false"@' /etc/default/lxd-bridge
+#  - cat /etc/default/lxd-bridge
+#  - service --status-all
+  - sudo service lxd restart
+
+  - sudo pip install ansible
+  - gem install kitchen
+  - gem install kitchen-ansible
+  - gem install kitchen-sync
+  - gem install kitchen-lxd_cli
+  - gem list
+  - which kitchen
+## ssh key for lxd_cli ?
+  - ls ~/.ssh
+  - ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -P ""
+## sudo/su get us a non-usual PATH ...
+  - '[ "X${distribution}" == "Xcentos" ] && sudo -E su $USER -c "sh -x ./test/lxd/centos-ssh-image.sh" || true'
+  - sudo -E su $USER -c "env"
+  - sudo -E su $USER -c "env PATH=$PATH kitchen diagnose --all"
+#  - sudo -E su $USER -c "kitchen diagnose --all"
+#  - sudo -E -u $USER kitchen diagnose --all
+
 script:
-  - "echo \"[test-kitchen]\nlocalhost\" > inventory"
+#  - KITCHEN_LOCAL_YAML=.kitchen.local.yml bundle exec kitchen verify ${INSTANCE}
+  - sudo -E su $USER -c "env PATH=$PATH kitchen verify default-${distribution}-${version//./} -l debug || (cat $HOME/.kitchen/logs/default-${distribution}-${version//./}.log; find /tmp/kitchen)"
 
-# Check the role/playbook's syntax.
-  - "ansible-playbook -i inventory --syntax-check test/integration/default/default.yml"
-
-# Run the role/playbook with ansible-playbook.
-  - "ansible-playbook -i inventory --connection=local --become -vvvv test/integration/default/default.yml"
-
-# Run the role/playbook again, checking to make sure it's idempotent.
-  - "ansible-playbook -i inventory test/integration/default/default.yml --connection=local --become | tee /tmp/idempotency.log | grep -q 'changed=0.*failed=0'  && (echo 'Idempotence test: pass' && exit 0)  || (echo 'Idempotence test: fail' && cat /tmp/idempotency.log && exit 1)"
-
-# Serverspec
-  - "cd test/integration/default/serverspec/ && bundle exec rake spec"
-
-after_failure:
-  - "sudo systemctl -l status"
-  - "sudo journalctl -xe --no-pager"
+#after_failure:
+#  - "systemctl -l status"
+#  - "journalctl -xe --no-pager"
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+
