@@ -1,4 +1,5 @@
 ---
+# v60+ GPO support: https://support.mozilla.org/en-US/products/firefox-enterprise
 
 - name: Windows | Add autoconfiguration script for Mozilla Firefox
   win_template:

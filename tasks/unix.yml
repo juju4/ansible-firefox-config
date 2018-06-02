@@ -4,6 +4,7 @@
 ## http://www.fvue.nl/wiki/Ansible:_Install_Firefox_extension
 ## http://askubuntu.com/questions/73474/how-to-install-firefox-addon-from-command-line-in-scripts
 ## http://kb.mozillazine.org/Installing_extensions
+## https://www.morbo.org/2018/05/linux-sandboxing-improvements-in_10.html
 
 - name: Include system-specific variables
   include_vars: "{{ ansible_system }}.yml"
