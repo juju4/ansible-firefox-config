@@ -7,7 +7,7 @@ fxext_list:
 ## uBlock Origin
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/894392/ublock_origin-1.15.16-an+fx.xpi', id: 'uBlock0@raymondhill.net' }
 ## Screengrab
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/828008/screengrab-2.11-an+fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1107897/screengrab-2.18-fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
 ## Privacy Badger
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/855336/privacy_badger-2018.2.5-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
 
