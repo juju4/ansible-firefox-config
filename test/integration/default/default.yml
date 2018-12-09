@@ -1,9 +1,5 @@
 ---
 
 - hosts: all
-#- hosts: test-kitchen
-#  vars:
-#    - a:
   roles:
-    - juju4.firefox-config
-
+    - juju4.firefox_config

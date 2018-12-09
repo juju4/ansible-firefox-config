@@ -23,8 +23,6 @@
     mode: '0755'
 
 - name: Unix | Download extensions
-#  local_action: >
-#      command "rsync -Cavz firefox/extensions/AdblockEdge/{fe272bd1-5f76-4ea4-8501-a05d35d823fc} me@{{ inventory_hostname }}:/home/me/.mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/"
   get_url:
     url: "{{ item.u }}"
     dest: "{{ fxext_dl_repo }}/{{ item.u | basename }}"

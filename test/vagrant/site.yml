@@ -2,5 +2,4 @@
 
 - hosts: vagrantselect
   roles:
-    - juju4.firefox-config
-
+    - juju4.firefox_config
