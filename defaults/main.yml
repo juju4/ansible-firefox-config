@@ -10,6 +10,10 @@ fxext_list:
 #    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1107897/screengrab-2.18-fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
 ## Privacy Badger
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/855336/privacy_badger-2018.2.5-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
+# Canvas Blocker
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1677846/canvasblocker-0.5.8-an+fx.xpi', id: 'CanvasBlocker@kkapsner.de.xpi' }
+# Google Redirects Fixer & Tracking Remover
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi', id: 'jid1-zUrvDCat3xoDSQ@jetpack' }
 
 fx_harden_userjs: true
 fxjs_lockpref: false
