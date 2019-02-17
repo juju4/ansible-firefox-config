@@ -44,4 +44,4 @@
   with_items: "{{ fxext_list }}"
 
 - include: userjs.yml
-  when: fx_harden_userjs
+  when: fx_harden_userjs or fx_template_userjs
