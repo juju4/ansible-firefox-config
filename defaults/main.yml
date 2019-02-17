@@ -15,5 +15,6 @@ fxext_list:
 # Google Redirects Fixer & Tracking Remover
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi', id: 'jid1-zUrvDCat3xoDSQ@jetpack' }
 
-fx_harden_userjs: true
+fx_template_userjs: firefox-mozilla.cfg.j2
+fx_harden_userjs: false
 fxjs_lockpref: false

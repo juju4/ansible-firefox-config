@@ -1,42 +1,53 @@
 ---
-## https://github.com/pyllyukko/user.js/
+# https://github.com/pyllyukko/user.js/
+# https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Changing_defaults
 
-- name: Download pyllyukko harden user.js
-  get_url:
-    url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
-    checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
-    dest: "{{ fxjs_path }}.orig"
-    mode: '0644'
-    backup: yes
-
-- name: Check if firefox.js exists
-  stat:
-    path: "{{ fxjs_path }}"
-  register: fxjs
-
-- name: Install pyllyukko harden user.js
-  copy:
-    src: "{{ fxjs_path }}.orig"
+- name: Install template userjs
+  template:
+    src: "{{ fx_template_userjs }}"
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
-  when: not fxjs.stat.exists
+  when: fx_template_userjs
 
-- name: Configure as default pref
-  replace:
-    dest: "{{ fxjs_path }}"
-    regexp: 'user_pref\('
-    replace: 'pref('
-    backup: yes
-  when: not fxjs_lockpref
+- block:
+    - name: Download pyllyukko harden user.js
+      get_url:
+        url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
+        checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
+        dest: "{{ fxjs_path }}.orig"
+        mode: '0644'
+        backup: yes
 
-- name: Configure as locked pref
-  replace:
-    dest: "{{ fxjs_path }}"
-    regexp: 'user_pref\('
-    replace: 'lockPref('
-    backup: yes
-  when: fxjs_lockpref
+    - name: Check if firefox.js exists
+      stat:
+        path: "{{ fxjs_path }}"
+      register: fxjs
+
+    - name: Install pyllyukko harden user.js
+      copy:
+        src: "{{ fxjs_path }}.orig"
+        dest: "{{ fxjs_path }}"
+        mode: '0644'
+        backup: yes
+      when: not fxjs.stat.exists
+
+    - name: Configure as default pref
+      replace:
+        dest: "{{ fxjs_path }}"
+        regexp: 'user_pref\('
+        replace: 'pref('
+        backup: yes
+      when: not fxjs_lockpref
+
+    - name: Configure as locked pref
+      replace:
+        dest: "{{ fxjs_path }}"
+        regexp: 'user_pref\('
+        replace: 'lockPref('
+        backup: yes
+      when: fxjs_lockpref
+  when: fx_harden_userjs
 
 ## cas.sh ? only apply to user profile ~/.mozilla/firefox/XXXXXXXX.current_profile
 # https://github.com/pyllyukko/user.js/blob/master/CAs.md
