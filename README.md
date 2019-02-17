@@ -55,6 +55,9 @@ $ vagrant ssh
 
 ## Troubleshooting & Known issues
 
+## References
+
+* [Firefox blocked add-ons](https://blocked.cdn.mozilla.net/)
 
 ## License
 
