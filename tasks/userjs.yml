@@ -8,7 +8,7 @@
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
-  when: fx_template_userjs
+  when: fx_template_userjs != ''
 
 - block:
     - name: Download pyllyukko harden user.js
