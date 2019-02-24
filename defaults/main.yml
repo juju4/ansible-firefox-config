@@ -2,13 +2,14 @@
 
 fxext_dl_repo: /var/_install
 fxext_list:
-## HTTPS Everywhere
+# HTTPS Everywhere
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/890494/https_everywhere-2018.3.13-an+fx.xpi', id: 'https-everywhere@eff.org' }
-## uBlock Origin
+# uBlock Origin
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/894392/ublock_origin-1.15.16-an+fx.xpi', id: 'uBlock0@raymondhill.net' }
-## Screengrab
+# Screengrab
 #    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1107897/screengrab-2.18-fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
-## Privacy Badger
+# Privacy Badger
+# https://github.com/EFForg/privacybadger/blob/master/doc/admin-deployment.md
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/855336/privacy_badger-2018.2.5-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
 # Canvas Blocker
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/1677846/canvasblocker-0.5.8-an+fx.xpi', id: 'CanvasBlocker@kkapsner.de.xpi' }
