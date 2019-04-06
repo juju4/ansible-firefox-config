@@ -11,10 +11,10 @@
   when: fx_template_userjs != '' and not fx_harden_userjs
 
 - block:
-   - name: Check if firefox.js exists
-     stat:
+    - name: Check if firefox.js exists
+      stat:
         path: "{{ fxjs_path }}-pyllyukko"
-     register: fxjsp
+      register: fxjsp
 
     - name: Download pyllyukko harden user.js
       get_url:
