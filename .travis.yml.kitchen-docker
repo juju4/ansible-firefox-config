@@ -9,18 +9,25 @@ env:
 #    version: 6
 #  - distribution: centos
 #    version: 7
+    suite: default
   - distribution: ubuntu
     version: 18.04
+    suite: default
   - distribution: ubuntu
     version: 16.04
+    suite: default
   - distribution: ubuntu
     version: 14.04
+    suite: default
 #  - distribution: ubuntu
 #    version: 12.04
 #  - distribution: alpine
 #    version: 3.4
 #  - distribution: debian
 #    version: 8
+  - distribution: ubuntu
+    version: 18.04
+    suite: default-hardenjs
 
 before_install:
   - env
@@ -43,7 +50,7 @@ script:
 ## avoid locale issue under xenial docker, https://github.com/pypa/pip/issues/3575
   - export LC_ALL=C.UTF-8
   - export LANG=C.UTF-8
-  - KITCHEN_YAML=.kitchen.docker.yml kitchen verify ${distribution}-${version//./}
+  - KITCHEN_YAML=.kitchen.docker.yml kitchen verify ${suite}-${distribution}-${version//./}
 
 #after_failure:
 #  - "systemctl -l status"

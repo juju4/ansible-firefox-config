@@ -42,3 +42,8 @@ suites:
   - name: default
     run_list:
     attributes:
+  - name: default-hardenjs
+    run_list:
+    attributes:
+    includes:
+      - ubuntu-18.04
