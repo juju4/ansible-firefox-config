@@ -8,33 +8,26 @@
     dest: "{{ fxjs_path }}"
     mode: '0644'
     backup: yes
-  when: fx_template_userjs != ''
+  when: fx_template_userjs != '' and not fx_harden_userjs
 
 - block:
+   - name: Check if firefox.js exists
+     stat:
+        path: "{{ fxjs_path }}-pyllyukko"
+     register: fxjsp
+
     - name: Download pyllyukko harden user.js
       get_url:
         url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
         checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
-        dest: "{{ fxjs_path }}.orig"
+        dest: "{{ fxjs_path }}-pyllyukko"
         mode: '0644'
         backup: yes
-
-    - name: Check if firefox.js exists
-      stat:
-        path: "{{ fxjs_path }}"
-      register: fxjs
-
-    - name: Install pyllyukko harden user.js
-      copy:
-        src: "{{ fxjs_path }}.orig"
-        dest: "{{ fxjs_path }}"
-        mode: '0644'
-        backup: yes
-        remote_src: true
+      when: not fxjsp.stat.exists
 
     - name: Configure as default pref
       replace:
-        dest: "{{ fxjs_path }}"
+        dest: "{{ fxjs_path }}-pyllyukko"
         regexp: 'user_pref\('
         replace: 'pref('
         backup: yes
@@ -42,11 +35,20 @@
 
     - name: Configure as locked pref
       replace:
-        dest: "{{ fxjs_path }}"
+        dest: "{{ fxjs_path }}-pyllyukko"
         regexp: 'user_pref\('
         replace: 'lockPref('
         backup: yes
       when: fxjs_lockpref
+
+    - name: Install pyllyukko harden user.js
+      copy:
+        src: "{{ fxjs_path }}-pyllyukko"
+        dest: "{{ fxjs_path }}"
+        mode: '0644'
+        backup: yes
+        remote_src: true
+
   when: fx_harden_userjs
 
 ## cas.sh ? only apply to user profile ~/.mozilla/firefox/XXXXXXXX.current_profile
