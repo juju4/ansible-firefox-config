@@ -30,6 +30,7 @@
         dest: "{{ fxjs_path }}"
         mode: '0644'
         backup: yes
+        remote_src: true
 
     - name: Configure as default pref
       replace:
