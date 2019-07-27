@@ -127,7 +127,6 @@ on_finish:
     Get-Content "c:\Program Files\Mozilla Firefox\override.ini"
     True
 
-
 notifications:
 - provider: Email
   to:
