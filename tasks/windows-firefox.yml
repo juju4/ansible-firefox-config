@@ -11,17 +11,17 @@
     src: firefox-autoconfig.js.j2
     dest: "{{ firefox_windir_path }}\\defaults\\pref\\autoconfig.js"
 
-- name: Add mozilla.cfg for Mozilla Firefox
+- name: Windows | Add mozilla.cfg for Mozilla Firefox
   win_template:
     src: firefox-mozilla.cfg.j2
     dest: "{{ firefox_windir_path }}\\mozilla.cfg"
 
-- name: Add override.ini for Mozilla Firefox
+- name: Windows | Add override.ini for Mozilla Firefox
   win_template:
     src: firefox-override.ini.j2
     dest: "{{ firefox_windir_path }}\\override.ini"
 
-- name: Ensure Mozilla Firefox distribution extensions directory exists
+- name: Windows | Ensure Mozilla Firefox distribution extensions directory exists
   win_file:
     path: "{{ firefox_windir_path }}\\distribution\\extensions"
     state: directory
