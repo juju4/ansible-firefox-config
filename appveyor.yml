@@ -96,7 +96,7 @@ install:
 #- cmd: "%CYG_BASH% -lc 'find -ls'"
 - cmd: "%CYG_BASH% -lc 'ansible -i /cygdrive/c/projects/ansible-firefox-config/test/appveyor/inventory -m win_ping -vvv localhost'"
 - cmd: "%CYG_BASH% -lc 'mkdir -p /etc/ansible/roles'"
-- cmd: "%CYG_BASH% -lc 'cp -R /cygdrive/c/projects/ansible-firefox-config /etc/ansible/roles/juju4.win_osquery'"
+- cmd: "%CYG_BASH% -lc 'cp -R /cygdrive/c/projects/ansible-firefox-config /etc/ansible/roles/juju4.firefox-config'"
 - cmd: cinst -y firefox
 
 build: off
