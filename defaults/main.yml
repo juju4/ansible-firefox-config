@@ -19,3 +19,5 @@ fxext_list:
 fx_template_userjs: firefox-mozilla.cfg.j2
 fx_harden_userjs: false
 fxjs_lockpref: false
+
+firefox_windir_path: 'C:\Program Files (x86)\Mozilla Firefox'

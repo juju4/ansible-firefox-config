@@ -1,26 +1,29 @@
 ---
 # v60+ GPO support: https://support.mozilla.org/en-US/products/firefox-enterprise
 
+- name: Windows | Ensure pref directory exists
+  win_file:
+    dest: "{{ firefox_windir_path }}\\defaults\\pref"
+    state: directory
+
 - name: Windows | Add autoconfiguration script for Mozilla Firefox
   win_template:
     src: firefox-autoconfig.js.j2
-#    dest: "%ProgramFiles%\\Mozilla Firefox\\defaults\\pref\\autoconfig.js"
-    dest: "c:\\Program Files\\Mozilla Firefox\\defaults\\pref\\autoconfig.js"
+    dest: "{{ firefox_windir_path }}\\defaults\\pref\\autoconfig.js"
 
 - name: Add mozilla.cfg for Mozilla Firefox
   win_template:
     src: firefox-mozilla.cfg.j2
-    dest: "c:\\Program Files\\Mozilla Firefox\\mozilla.cfg"
+    dest: "{{ firefox_windir_path }}\\mozilla.cfg"
 
 - name: Add override.ini for Mozilla Firefox
   win_template:
     src: firefox-override.ini.j2
-    dest: "c:\\Program Files\\Mozilla Firefox\\override.ini"
+    dest: "{{ firefox_windir_path }}\\override.ini"
 
 - name: Ensure Mozilla Firefox distribution extensions directory exists
   win_file:
-#    path: "%ProgramFiles%\\Mozilla Firefox\\distribution\\extensions"
-    path: "c:\\Program Files\\Mozilla Firefox\\distribution\\extensions"
+    path: "{{ firefox_windir_path }}\\distribution\\extensions"
     state: directory
 
 ## FIXME! download and unzip are not idempotent
@@ -29,15 +32,14 @@
 - name: Windows | Download Firefox extensions
   win_get_url:
     url: "{{ item.u }}"
-#    dest: "%ProgramFiles%\\Mozilla Firefox\\distribution\\extensions"
-    dest: "c:\\Program Files\\Mozilla Firefox\\distribution\\extensions\\{{ item | basename }}.zip"
+    dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item | basename }}.zip"
   with_items: "{{ fxext_list }}"
 
 ## http://kb.mozillazine.org/Determine_extension_ID
 - name: Windows | Unzip Firefox extensions
   win_unzip:
-    src: "c:\\Program Files\\Mozilla Firefox\\distribution\\extensions\\{{ item.u | basename }}.zip"
-    dest: "c:\\Program Files\\Mozilla Firefox\\distribution\\extensions\\{{ item.id }}"
+    src: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | basename }}.zip"
+    dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.id }}"
   with_items: "{{ fxext_list }}"
 
 ## https://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
