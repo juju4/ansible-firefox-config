@@ -32,13 +32,13 @@
 - name: Windows | Download Firefox extensions
   win_get_url:
     url: "{{ item.u }}"
-    dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item | basename }}.zip"
+    dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | win_basename }}.zip"
   with_items: "{{ fxext_list }}"
 
 ## http://kb.mozillazine.org/Determine_extension_ID
 - name: Windows | Unzip Firefox extensions
   win_unzip:
-    src: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | basename }}.zip"
+    src: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | win_basename }}.zip"
     dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.id }}"
   with_items: "{{ fxext_list }}"
 
