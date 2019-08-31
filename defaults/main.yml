@@ -12,7 +12,7 @@ fxext_list:
 # https://github.com/EFForg/privacybadger/blob/master/doc/admin-deployment.md
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/3285452/privacy_badger-2019.7.1.1-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
 # Canvas Blocker
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3364932/canvasblocker-0.5.13-an+fx.xpi', id: 'CanvasBlocker@kkapsner.de.xpi' }
+    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3364932/canvasblocker-0.5.13-an+fx.xpi', id: 'CanvasBlocker@kkapsner.de' }
 # Google Redirects Fixer & Tracking Remover
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi', id: 'jid1-zUrvDCat3xoDSQ@jetpack' }
     - { u: 'https://addons.mozilla.org/firefox/downloads/file/1050617/terms_of_service_didnt_read-2.0.0-an+fx.xpi', id: 'jid0-3GUEt1r69sQNSrca5p8kx9Ezc3U@jetpack' }
