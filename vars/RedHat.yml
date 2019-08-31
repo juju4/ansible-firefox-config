@@ -1,5 +1,6 @@
 ---
 
 fxroot_ext: /usr/lib64/firefox/browser/extensions
+#fxroot_ext: /usr/lib64/firefox/browser/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 # /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
 fxjs_path: /etc/firefox/firefox.js
