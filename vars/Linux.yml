@@ -2,3 +2,4 @@
 
 fxroot_ext: /usr/lib/firefox-addons/extensions
 fxjs_path: /etc/firefox/firefox.js
+fxpolicies_path: /usr/lib/firefox/distribution/policies.json

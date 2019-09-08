@@ -3,5 +3,8 @@
 - include: unix.yml
   when: ansible_os_family != "Windows"
 
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+
 - include: windows-firefox.yml
   when: ansible_os_family == "Windows"

@@ -1,0 +1,3 @@
+---
+
+fxpolicies_path: "{{ firefox_windir_path }}\\distribution\\policies.json"

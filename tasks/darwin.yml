@@ -1,0 +1,21 @@
+---
+# https://github.com/mozilla/policy-templates/tree/master/mac
+
+- name: Macos | Enable enterprise policies
+  osx_defaults:
+    domain: /Library/Preferences/org.mozilla.firefox
+    key: EnterprisePoliciesEnabled
+    type: bool
+    value: true
+
+- name: Macos | Ensure distribution directory exists
+  file:
+    dest: "{{ fxpolicies_path | dirname }}"
+    mode: '0755'
+    state: directory
+
+- name: Macos | Enable enterprise policies
+  template:
+    src: "{{ fxpolicies_template }}.j2"
+    dest: "{{ fxpolicies_path }}"
+    mode: '0644'

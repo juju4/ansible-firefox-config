@@ -13,6 +13,7 @@ It was tested on the following versions:
  * 2.0
  * 2.2
  * 2.5
+ * 2.8
 
 ### Operating systems
 
@@ -57,7 +58,9 @@ $ vagrant ssh
 
 ## References
 
+* [Policy Templates for Firefox, Github](https://github.com/mozilla/policy-templates)
 * [Firefox blocked add-ons](https://blocked.cdn.mozilla.net/)
+* [Customizing Firefox Using policies.json](https://support.mozilla.org/en-US/kb/customizing-firefox-using-policiesjson)
 
 ## License
 

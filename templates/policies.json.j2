@@ -1,0 +1,95 @@
+{
+  "policies": {
+    "BlockAboutConfig": false,
+    "BlockAboutProfiles": true,
+    "Certificates": {
+      "Install": ["cert1.der", "/home/username/cert2.pem"]
+    },
+    "Cookies": {
+      "Allow": ["http://example.org/"],
+      "Block": ["http://example.edu/"],
+      "Default": true,
+      "AcceptThirdParty": "never",
+      "ExpireAtSessionEnd": false,
+      "RejectTracker": true,
+      "Locked": false
+    },
+    "DisableAppUpdate": false,
+    "DisableBuiltinPDFViewer": false,
+    "DisableFirefoxAccounts": true,
+    "DisableFirefoxStudies": true,
+    "DisableForgetButton": true,
+    "DisableFormHistory": true,
+    "DisableMasterPasswordCreation": false,
+    "DisablePocket": true,
+    "DisablePrivateBrowsing": true,
+    "DisableProfileRefresh": true,
+    "DisableSecurityBypass": {
+      "InvalidCertificate": false,
+      "SafeBrowsing": false
+    },
+    "DisableTelemetry": true,
+    "DNSOverHTTPS": {
+      "Enabled":  false,
+      "Locked": true
+    },
+    "DontCheckDefaultBrowser": true,
+    "EnableTrackingProtection": { "Value": true, "Locked": false },
+    "Extensions": {
+      "Install": ["https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"],
+      "Uninstall": ["bad_addon_id@mozilla.org"],
+      "Locked":  ["uBlock0@raymondhill.net"]
+    },
+    "ExtensionUpdate": true,
+    "FlashPlugin": {
+      "Allow": ["http://example.org/"],
+      "Block": ["http://example.edu/"],
+      "Default": false,
+      "Locked": true
+    },
+    "InstallAddonsPermission": {
+      "Allow": ["https://addons.mozilla.org"],
+      "Default": true
+    },
+    "NetworkPrediction": true,
+    "OfferToSaveLogins": false,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "Permissions": {
+      "Camera": {
+        "Allow": ["https://example.org"],
+        "Block": ["https://example.edu"],
+        "BlockNewRequests": true,
+        "Locked": false
+      },
+      "Microphone": {
+        "Allow": ["https://example.org"],
+        "Block": ["https://example.edu"],
+        "BlockNewRequests": true,
+        "Locked": false
+      },
+      "Location": {
+        "Allow": ["https://example.org"],
+        "Block": ["https://example.edu"],
+        "BlockNewRequests": true,
+        "Locked": true
+      },
+      "Notifications": {
+        "Allow": ["https://example.org"],
+        "Block": ["https://example.edu"],
+        "BlockNewRequests": true,
+        "Locked": true
+      }
+    },
+    "PopupBlocking": {
+      "Allow": ["http://example.org/",
+                "http://example.edu/"],
+      "Default": true,
+      "Locked": false
+    },
+    "Proxy": { "Mode": "none", "Locked": false },
+    "RequestedLocales": "en-US",
+    "SearchBar": "separate",
+    "SSLVersionMin": "tls1.2"
+  }
+}

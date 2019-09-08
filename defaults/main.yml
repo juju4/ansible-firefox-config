@@ -24,3 +24,6 @@ fx_harden_userjs: false
 fxjs_lockpref: false
 
 firefox_windir_path: 'C:\Program Files (x86)\Mozilla Firefox'
+
+# without .j2 suffix
+fxpolicies_template: policies.json

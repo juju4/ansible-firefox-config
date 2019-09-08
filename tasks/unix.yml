@@ -45,3 +45,9 @@
 
 - include: userjs.yml
   when: fx_harden_userjs or fx_template_userjs
+
+- name: Enable enterprise policies
+  template:
+    src: "{{ fxpolicies_template }}.j2"
+    dest: "{{ fxpolicies_path }}"
+    mode: '0644'
