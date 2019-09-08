@@ -98,6 +98,7 @@ after_script:
   - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'ls -l /etc/firefox/'"
   - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'ls -l /usr/lib64/firefox/browser/extensions /usr/lib/firefox-addons/extensions'"
   - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'cat /etc/firefox/firefox.js'"
+  - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'cat /usr/lib/firefox/distribution/policies.json'"
   - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'firefox --headless --screenshot firefox.png https://www.google.com/'"
   - sudo -E su $USER -c "env PATH=$PATH kitchen exec ${suite}-${distribution}-${version//./} -c 'ls -lA"'"
   - sudo -E su $USER -c "env PATH=$PATH kitchen destroy ${suite}-${distribution}-${version//./}"
