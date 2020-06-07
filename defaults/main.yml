@@ -1,23 +1,8 @@
 ---
 
 fxext_dl_repo: /var/_install
-fxext_list:
-# HTTPS Everywhere
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3060290/https_everywhere-2019.6.27-an+fx.xpi', id: 'https-everywhere@eff.org' }
-# uBlock Origin
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3361355/ublock_origin-1.21.2-an+fx.xpi', id: 'uBlock0@raymondhill.net' }
-# Screengrab
-#    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1107897/screengrab-2.18-fx.xpi', id: '{02450914-cdd9-410f-b1da-db004e18c671}' }
-# Privacy Badger
-# https://github.com/EFForg/privacybadger/blob/master/doc/admin-deployment.md
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3285452/privacy_badger-2019.7.1.1-an+fx.xpi', id: 'jid1-MnnxcxisBPnSXQ@jetpack' }
-# Canvas Blocker
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/3364932/canvasblocker-0.5.13-an+fx.xpi', id: 'CanvasBlocker@kkapsner.de' }
-# Google Redirects Fixer & Tracking Remover
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi', id: 'jid1-zUrvDCat3xoDSQ@jetpack' }
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1050617/terms_of_service_didnt_read-2.0.0-an+fx.xpi', id: 'jid0-3GUEt1r69sQNSrca5p8kx9Ezc3U@jetpack' }
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1694726/full_web_page_screenshots-0.98.96-fx.xpi', id: '{0b457cAA-602d-484a-8fe7-c1d894a011ba}' }
-    - { u: 'https://addons.mozilla.org/firefox/downloads/file/1400557/firefox_multi_account_containers-6.1.0-fx.xpi', id: '@testpilot-containers' }
+# local install, use below for policy install from given url
+fxext_list: []
 
 fx_template_userjs: firefox-mozilla.cfg.j2
 fx_harden_userjs: false
@@ -27,3 +12,44 @@ firefox_windir_path: 'C:\Program Files (x86)\Mozilla Firefox'
 
 # without .j2 suffix
 fxpolicies_template: policies.json
+
+firefox_allowonly_extensions:
+  - id: "https-everywhere@eff.org"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/https-everywhere/latest.xpi"
+  - id: "uBlock0@raymondhill.net"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+  - id: "jid1-MnnxcxisBPnSXQ@jetpack"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi"
+  - id: "CanvasBlocker@kkapsner.de"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/latest.xpi"
+  - id: "jid1-zUrvDCat3xoDSQ@jetpack"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/google-no-tracking-url/latest.xpi"
+  - id: "jid0-3GUEt1r69sQNSrca5p8kx9Ezc3U@jetpack"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/terms-of-service-didnt-read/latest.xpi"
+  - id: "{0b457cAA-602d-484a-8fe7-c1d894a011ba}"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/fireshot/latest.xpi"
+  - id: "@testpilot-containers"
+    mode: "force_installed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi"
+  - id: "{73a6fe31-595d-460b-a920-fcc0f8843232}"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/noscript/latest.xpi"
+  - id: "foxyproxy@eric.h.jung"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi"
+  - id: "keepassxc-browser@keepassxc.org"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi"
+  - id: "{446900e4-71c2-419f-a6a7-df9c091e268b}"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
+  - id: "support@lastpass.com"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi"
