@@ -51,3 +51,4 @@
     src: "{{ fxpolicies_template }}.j2"
     dest: "{{ fxpolicies_path }}"
     mode: '0644'
+    backup: "{{ firefoxconfig_backup | default(false) }}"
