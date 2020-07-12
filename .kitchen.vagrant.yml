@@ -17,10 +17,11 @@ provisioner:
   ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
 
 platforms:
+  - name: ubuntu-20.04
   - name: ubuntu-18.04
   - name: ubuntu-16.04
-  - name: ubuntu-14.04
-  - name: centos-7.1
+  - name: centos-8
+  - name: centos-7
 
 suites:
   - name: default
