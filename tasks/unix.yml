@@ -34,6 +34,7 @@
   file:
     path: "{{ fxroot_ext }}"
     state: directory
+    mode: '0755'
 
 - name: Unix | install extensions
   copy:
