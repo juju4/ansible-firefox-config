@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          path: juju4.firefox-config
+          path: juju4.firefox_config
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -39,7 +39,7 @@ jobs:
           ls -l /opt/hostedtoolcache/Python/3.9.1/x64/bin || true
           echo "/opt/hostedtoolcache/Python/3.9.1/x64/bin" >> $GITHUB_PATH
           ansible --version
-          cd $GITHUB_WORKSPACE/juju4.firefox-config
+          cd $GITHUB_WORKSPACE/juju4.firefox_config
           [ -f get-dependencies.sh ] && sh -x get-dependencies.sh
           { echo '[defaults]'; echo 'callback_whitelist = profile_tasks, timer'; echo 'roles_path = ../'; echo 'ansible_python_interpreter: /usr/bin/python3'; } >> ansible.cfg
         if: ${{ matrix.os != 'windows-latest'}}
@@ -51,22 +51,22 @@ jobs:
         if: ${{ matrix.os != 'windows-latest'}}
       - name: yamllint
         run: |
-          cd $GITHUB_WORKSPACE/juju4.firefox-config && yamllint .
+          cd $GITHUB_WORKSPACE/juju4.firefox_config && yamllint .
         if: ${{ matrix.os != 'windows-latest'}}
       - name: ansible-lint
         run: |
-          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-lint
+          cd $GITHUB_WORKSPACE/juju4.firefox_config && ansible-lint
         if: ${{ matrix.os != 'windows-latest'}}
       - name: run test
         run: |
-          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS}
+          cd $GITHUB_WORKSPACE/juju4.firefox_config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
         if: ${{ matrix.os != 'windows-latest'}}
       - name: idempotency run
         run: |
-          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS} | tee /tmp/idempotency.log | grep -q 'changed=0.*failed=0'  && (echo 'Idempotence test: pass' && exit 0)  || (echo 'Idempotence test: fail' && cat /tmp/idempotency.log && exit 0)
+          cd $GITHUB_WORKSPACE/juju4.firefox_config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS} | tee /tmp/idempotency.log | grep -q 'changed=0.*failed=0'  && (echo 'Idempotence test: pass' && exit 0)  || (echo 'Idempotence test: fail' && cat /tmp/idempotency.log && exit 0)
         if: ${{ matrix.os != 'windows-latest'}}
       - name: On failure
         run: |
