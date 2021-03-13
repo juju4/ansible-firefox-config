@@ -1,5 +1,5 @@
-[![Build Status - Master](https://travis-ci.org/juju4/ansible-firefox-config.svg?branch=master)](https://travis-ci.org/juju4/ansible-firefox-config)
-[![Build Status - Devel](https://travis-ci.org/juju4/ansible-firefox-config.svg?branch=devel)](https://travis-ci.org/juju4/ansible-firefox-config/branches)
+[![Actions Status - Master](https://github.com/juju4/ansible-firefox-config/workflows/AnsibleCI/badge.svg)](https://github.com/juju4/ansible-firefox-config/actions?query=branch%3Amaster)
+[![Actions Status - Devel](https://github.com/juju4/ansible-firefox-config/workflows/AnsibleCI/badge.svg?branch=devel)](https://github.com/juju4/ansible-firefox-config/actions?query=branch%3Adevel)
 # Firefox configuration ansible role
 
 Ansible role to setup Firefox system-wide

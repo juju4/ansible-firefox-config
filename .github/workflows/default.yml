@@ -1,0 +1,99 @@
+---
+name: AnsibleCI
+
+on:
+  push:
+  pull_request:
+  schedule:  # run weekly, every Tuesday 03:00
+    - cron: '0 3 * * 2'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        # os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
+    env:
+      ANSIBLE_CALLBACK_WHITELIST: profile_tasks
+      ANSIBLE_EXTRA_VARS: ""
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: juju4.firefox-config
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install ansible-lint flake8 yamllint
+          which ansible
+          pip3 install ansible
+          pip3 show ansible
+          ls -l $HOME/.local/bin || true
+          ls -l /opt/hostedtoolcache/Python/3.9.1/x64/bin || true
+          echo "/opt/hostedtoolcache/Python/3.9.1/x64/bin" >> $GITHUB_PATH
+          ansible --version
+          cd $GITHUB_WORKSPACE/juju4.firefox-config
+          [ -f get-dependencies.sh ] && sh -x get-dependencies.sh
+          { echo '[defaults]'; echo 'callback_whitelist = profile_tasks, timer'; echo 'roles_path = ../'; echo 'ansible_python_interpreter: /usr/bin/python3'; } >> ansible.cfg
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: Environment
+        run: |
+          pwd
+          env
+          find -ls
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: yamllint
+        run: |
+          cd $GITHUB_WORKSPACE/juju4.firefox-config && yamllint .
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: ansible-lint
+        run: |
+          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-lint
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: run test
+        run: |
+          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS}
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: idempotency run
+        run: |
+          cd $GITHUB_WORKSPACE/juju4.firefox-config && ansible-playbook -i localhost, --connection=local --become -vvv test/integration/default/default.yml ${ANSIBLE_EXTRA_VARS} | tee /tmp/idempotency.log | grep -q 'changed=0.*failed=0'  && (echo 'Idempotence test: pass' && exit 0)  || (echo 'Idempotence test: fail' && cat /tmp/idempotency.log && exit 0)
+        if: ${{ matrix.os != 'windows-latest'}}
+      - name: On failure
+        run: |
+          ansible -i inventory --connection=local -m setup localhost
+          systemctl -l --no-pager status
+          systemctl -l --no-pager --failed
+          ls -l /usr/bin/ | egrep '(python|pip|ansible)'
+          pip freeze
+          pip3 freeze
+          ip addr
+          cat /etc/resolv.conf
+          host www.google.com
+          ping -c 1 www.google.com || true
+          ping -c 1 8.8.8.8 || true
+        if: ${{ failure() }} and ${{ matrix.os != 'windows-latest'}}
+        continue-on-error: true
+      - name: After script - files
+        run: |
+          ls -l /etc/firefox/ || true
+          ls -l /usr/lib64/firefox/browser/extensions /usr/lib/firefox-addons/extensions || true
+          cat /etc/firefox/firefox.js || true
+          cat /usr/lib/firefox/distribution/policies.json /usr/lib64/firefox/distribution/policies.json || true
+        if: ${{ always() }} and ${{ matrix.os != 'windows-latest'}}
+        continue-on-error: true
+      # https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode
+      - name: After script - firefox headless
+        run: |
+          firefox --screenshot https://www.google.com/ || true
+        if: ${{ always() }} and ${{ matrix.os != 'windows-latest'}}
+        continue-on-error: true
