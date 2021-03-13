@@ -32,7 +32,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip3 install ansible-lint flake8 yamllint
-          which ansible
+          which ansible || true
           pip3 install ansible
           pip3 show ansible
           ls -l $HOME/.local/bin || true
@@ -47,7 +47,7 @@ jobs:
         run: |
           pwd
           env
-          find -ls
+          find . -ls
         if: ${{ matrix.os != 'windows-latest'}}
       - name: yamllint
         run: |
