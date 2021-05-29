@@ -28,7 +28,6 @@
     dest: "{{ fxext_dl_repo }}/{{ item.u | basename }}"
     mode: '0644'
   with_items: "{{ fxext_list }}"
-  ignore_errors: true
 
 - name: Unix | Ensure Mozilla Firefox distribution extensions directory exists
   file:
