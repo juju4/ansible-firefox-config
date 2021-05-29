@@ -9,7 +9,7 @@ lockPref("app.update.enabled", true);
 //lockPref("app.update.service.enabled", false);
 
 // Disable Add-ons compatibility checking
-clearPref("extensions.lastAppVersion"); 
+clearPref("extensions.lastAppVersion");
 
 // Don't show 'know your rights' on first run
 pref("browser.rights.3.shown", true);
@@ -42,7 +42,7 @@ lockPref("datareporting.policy.dataSubmissionEnabled", false);
 
 // Disable crash reporter
 lockPref("toolkit.crashreporter.enabled", false);
-Components.classes["@mozilla.org/toolkit/crash-reporter;1"].getService(Components.interfaces.nsICrashReporter).submitReports = false; 
+Components.classes["@mozilla.org/toolkit/crash-reporter;1"].getService(Components.interfaces.nsICrashReporter).submitReports = false;
 
 // disable remember passwords
 lockPref("signon.rememberSignons", false);
