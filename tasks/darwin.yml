@@ -7,6 +7,7 @@
     key: EnterprisePoliciesEnabled
     type: bool
     value: true
+  become: yes
 
 - name: Macos | Ensure distribution directory exists
   file:
