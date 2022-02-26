@@ -1,10 +1,10 @@
 ---
 
-- include: unix.yml
+- import_tasks: unix.yml
   when: ansible_os_family != "Windows"
 
-- include: darwin.yml
+- import_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
 
-- include: windows-firefox.yml
+- import_tasks: windows-firefox.yml
   when: ansible_os_family == "Windows"

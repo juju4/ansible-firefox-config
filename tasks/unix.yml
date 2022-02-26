@@ -43,7 +43,7 @@
     remote_src: yes
   with_items: "{{ fxext_list }}"
 
-- include: userjs.yml
+- import_tasks: userjs.yml
   when: fx_harden_userjs or fx_template_userjs
 
 - name: Enable enterprise policies
