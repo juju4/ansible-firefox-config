@@ -3,7 +3,7 @@
 # https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Changing_defaults
 
 - name: Install template userjs
-  template:
+  ansible.builtin.template:
     src: "{{ fx_template_userjs }}"
     dest: "{{ fxjs_path }}"
     mode: '0644'
@@ -12,12 +12,12 @@
 
 - block:
     - name: Check if firefox.js exists
-      stat:
+      ansible.builtin.stat:
         path: "{{ fxjs_path }}-pyllyukko"
       register: fxjsp
 
     - name: Download pyllyukko harden user.js
-      get_url:
+      ansible.builtin.get_url:
         url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
         checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
         dest: "{{ fxjs_path }}-pyllyukko"
@@ -26,7 +26,7 @@
       when: not fxjsp.stat.exists
 
     - name: Configure as default pref
-      replace:
+      ansible.builtin.replace:
         dest: "{{ fxjs_path }}-pyllyukko"
         regexp: 'user_pref\('
         replace: 'pref('
@@ -34,7 +34,7 @@
       when: not fxjs_lockpref
 
     - name: Configure as locked pref
-      replace:
+      ansible.builtin.replace:
         dest: "{{ fxjs_path }}-pyllyukko"
         regexp: 'user_pref\('
         replace: 'lockPref('
@@ -42,7 +42,7 @@
       when: fxjs_lockpref
 
     - name: Install pyllyukko harden user.js
-      copy:
+      ansible.builtin.copy:
         src: "{{ fxjs_path }}-pyllyukko"
         dest: "{{ fxjs_path }}"
         mode: '0644'

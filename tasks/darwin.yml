@@ -10,13 +10,13 @@
   become: yes
 
 - name: Macos | Ensure distribution directory exists
-  file:
+  ansible.builtin.file:
     dest: "{{ fxpolicies_path | dirname }}"
     mode: '0755'
     state: directory
 
 - name: Macos | Enable enterprise policies
-  template:
+  ansible.builtin.template:
     src: "{{ fxpolicies_template }}.j2"
     dest: "{{ fxpolicies_path }}"
     mode: '0644'

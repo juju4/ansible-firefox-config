@@ -7,36 +7,36 @@
 ## https://www.morbo.org/2018/05/linux-sandboxing-improvements-in_10.html
 
 - name: Include system-specific variables
-  include_vars: "{{ ansible_system }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_system }}.yml"
 - name: Include RedHat-specific variables
-  include_vars: "RedHat.yml"
+  ansible.builtin.include_vars: "RedHat.yml"
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure package firefox is installed
-  package: pkg=firefox state=present
+  ansible.builtin.package: pkg=firefox state=present
   when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
 
 - name: Ensure download dir exists
-  file:
+  ansible.builtin.file:
     dest: "{{ fxext_dl_repo }}"
     state: directory
     mode: '0755'
 
 - name: Unix | Download extensions
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ item.u }}"
     dest: "{{ fxext_dl_repo }}/{{ item.u | basename }}"
     mode: '0644'
   with_items: "{{ fxext_list }}"
 
 - name: Unix | Ensure Mozilla Firefox distribution extensions directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ fxroot_ext }}"
     state: directory
     mode: '0755'
 
 - name: Unix | install extensions
-  copy:
+  ansible.builtin.copy:
     src: "{{ fxext_dl_repo }}/{{ item.u | basename }}"
     dest: "{{ fxroot_ext }}/{{ item.id }}.xpi"
     mode: '0644'
@@ -47,7 +47,7 @@
   when: fx_harden_userjs or fx_template_userjs
 
 - name: Enable enterprise policies
-  template:
+  ansible.builtin.template:
     src: "{{ fxpolicies_template }}.j2"
     dest: "{{ fxpolicies_path }}"
     mode: '0644'
