@@ -1,7 +1,19 @@
 {
   "policies": {
+    "AppAutoUpdate": true,
     "BlockAboutConfig": false,
     "BlockAboutProfiles": true,
+    "BlockAboutSupport": false,
+    "Bookmarks": [
+      {
+        "Title": "Example",
+        "URL": "https://example.com",
+        "Favicon": "https://example.com/favicon.ico",
+        "Placement": "menu",
+        "Folder": "FolderName"
+      }
+    ],
+    "CaptivePortal": false,
     "Certificates": {
       "Install": ["cert1.der", "/home/username/cert2.pem"]
     },
@@ -16,6 +28,7 @@
     },
     "DisableAppUpdate": false,
     "DisableBuiltinPDFViewer": false,
+    "DisableDeveloperTools": false,
     "DisableFirefoxAccounts": true,
     "DisableFirefoxStudies": true,
     "DisableForgetButton": true,
@@ -56,12 +69,6 @@
       }
     },
     "ExtensionUpdate": true,
-    "FlashPlugin": {
-      "Allow": ["http://example.org/"],
-      "Block": ["http://example.edu/"],
-      "Default": false,
-      "Locked": true
-    },
     "InstallAddonsPermission": {
       "Allow": ["https://addons.mozilla.org"],
       "Default": true
@@ -70,6 +77,11 @@
     "OfferToSaveLogins": false,
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
+    "PasswordManagerEnabled": false,
+    "PDFjs": {
+      "Enabled": false,
+      "EnablePermissions": true
+    }
     "Permissions": {
       "Camera": {
         "Allow": ["https://example.org"],
@@ -102,9 +114,11 @@
       "Default": true,
       "Locked": false
     },
+    "PromptForDownloadLocation": false,
     "Proxy": { "Mode": "none", "Locked": false },
     "RequestedLocales": "en-US",
     "SearchBar": "separate",
+    "SearchSuggestEnabled": false,
     "SSLVersionMin": "tls1.2"
   }
 }
