@@ -10,7 +10,8 @@
     backup: "{{ firefoxconfig_backup | default(false) }}"
   when: fx_template_userjs and not fx_harden_userjs
 
-- block:
+- name: harden userjs
+  block:
     - name: Check if firefox.js exists
       ansible.builtin.stat:
         path: "{{ fxjs_path }}-pyllyukko"
