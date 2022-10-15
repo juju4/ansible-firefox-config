@@ -37,7 +37,7 @@
 
 ## http://kb.mozillazine.org/Determine_extension_ID
 - name: Windows | Unzip Firefox extensions
-  ansible.windows.win_unzip:
+  community.windows.win_unzip:
     src: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | win_basename }}.zip"
     dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.id }}"
   with_items: "{{ fxext_list }}"
