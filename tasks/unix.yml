@@ -13,7 +13,9 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Ensure package firefox is installed
-  ansible.builtin.package: pkg=firefox state=present
+  ansible.builtin.package:
+    pkg: firefox
+    state: present
   when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
 
 - name: Ensure download dir exists
@@ -43,7 +45,8 @@
     remote_src: yes
   with_items: "{{ fxext_list }}"
 
-- import_tasks: userjs.yml
+- name: Import userjs
+  ansible.builtin.import_tasks: userjs.yml
   when: fx_harden_userjs or fx_template_userjs
 
 - name: Enable enterprise policies

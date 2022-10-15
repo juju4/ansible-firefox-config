@@ -11,6 +11,7 @@
   when: fx_template_userjs and not fx_harden_userjs
 
 - name: Harden userjs
+  when: fx_harden_userjs
   block:
     - name: Check if firefox.js exists
       ansible.builtin.stat:
@@ -49,8 +50,6 @@
         mode: '0644'
         backup: yes
         remote_src: true
-
-  when: fx_harden_userjs
 
 ## cas.sh ? only apply to user profile ~/.mozilla/firefox/XXXXXXXX.current_profile
 # https://github.com/pyllyukko/user.js/blob/master/CAs.md

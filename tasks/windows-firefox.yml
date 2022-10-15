@@ -2,27 +2,27 @@
 # v60+ GPO support: https://support.mozilla.org/en-US/products/firefox-enterprise
 
 - name: Windows | Ensure pref directory exists
-  win_file:
+  ansible.windows.win_file:
     dest: "{{ firefox_windir_path }}\\defaults\\pref"
     state: directory
 
 - name: Windows | Add autoconfiguration script for Mozilla Firefox
-  win_template:
+  ansible.windows.win_template:
     src: firefox-autoconfig.js.j2
     dest: "{{ firefox_windir_path }}\\defaults\\pref\\autoconfig.js"
 
 - name: Windows | Add mozilla.cfg for Mozilla Firefox
-  win_template:
+  ansible.windows.win_template:
     src: firefox-mozilla.cfg.j2
     dest: "{{ firefox_windir_path }}\\mozilla.cfg"
 
 - name: Windows | Add override.ini for Mozilla Firefox
-  win_template:
+  ansible.windows.win_template:
     src: firefox-override.ini.j2
     dest: "{{ firefox_windir_path }}\\override.ini"
 
 - name: Windows | Ensure Mozilla Firefox distribution extensions directory exists
-  win_file:
+  ansible.windows.win_file:
     path: "{{ firefox_windir_path }}\\distribution\\extensions"
     state: directory
 
@@ -30,14 +30,14 @@
 ## https://developer.mozilla.org/en-US/Firefox/Enterprise_deployment
 ## uBlock Origin, HTTPS everywhere, Privacy Badger
 - name: Windows | Download Firefox extensions
-  win_get_url:
+  ansible.windows.win_get_url:
     url: "{{ item.u }}"
     dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | win_basename }}.zip"
   with_items: "{{ fxext_list }}"
 
 ## http://kb.mozillazine.org/Determine_extension_ID
 - name: Windows | Unzip Firefox extensions
-  win_unzip:
+  ansible.windows.win_unzip:
     src: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.u | win_basename }}.zip"
     dest: "{{ firefox_windir_path }}\\distribution\\extensions\\{{ item.id }}"
   with_items: "{{ fxext_list }}"

@@ -2,6 +2,6 @@
 
 - hosts: all
   vars:
-    - fx_harden_userjs: true
+    fx_harden_userjs: true
   roles:
     - juju4.firefox_config

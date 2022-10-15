@@ -1,10 +1,13 @@
 ---
 
-- import_tasks: unix.yml
+- name: Import unix
+  ansible.builtin.import_tasks: unix.yml
   when: ansible_os_family != "Windows"
 
-- import_tasks: darwin.yml
+- name: Import darwin
+  ansible.builtin.import_tasks: darwin.yml
   when: ansible_os_family == 'Darwin'
 
-- import_tasks: windows-firefox.yml
+- name: Import windows-firefox
+  ansible.builtin.import_tasks: windows-firefox.yml
   when: ansible_os_family == "Windows"

@@ -2,7 +2,7 @@
 # https://github.com/mozilla/policy-templates/tree/master/mac
 
 - name: Macos | Enable enterprise policies
-  osx_defaults:
+  community.general.osx_defaults:
     domain: /Library/Preferences/org.mozilla.firefox
     key: EnterprisePoliciesEnabled
     type: bool
