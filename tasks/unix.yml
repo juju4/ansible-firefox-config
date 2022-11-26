@@ -12,6 +12,11 @@
   ansible.builtin.include_vars: "RedHat.yml"
   when: ansible_os_family == 'RedHat'
 
+- name: Include vars if snap
+  ansible.builtin.include_vars: snap.yml
+  when:
+    - (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 22)
+
 - name: Ensure package firefox is installed
   ansible.builtin.package:
     pkg: firefox
