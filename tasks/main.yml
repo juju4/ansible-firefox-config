@@ -1,5 +1,10 @@
 ---
 
+- name: Include vars if snap
+  ansible.builtin.include_vars: snap.yml
+  when:
+    - (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 22)
+
 - name: Import unix
   ansible.builtin.import_tasks: unix.yml
   when: ansible_os_family != "Windows"

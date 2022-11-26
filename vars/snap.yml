@@ -1,0 +1,5 @@
+---
+
+fxroot_ext: /usr/lib/firefox-addons/extensions
+fxjs_path: /etc/firefox/firefox.js
+fxpolicies_path: /etc/firefox/policies/policies.json

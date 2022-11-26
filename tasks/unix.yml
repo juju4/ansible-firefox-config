@@ -18,11 +18,14 @@
     state: present
   when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
 
-- name: Ensure download dir exists
+- name: Ensure target directories exist
   ansible.builtin.file:
-    dest: "{{ fxext_dl_repo }}"
+    dest: "{{ item }}"
     state: directory
     mode: '0755'
+  loop:
+    - "{{ fxext_dl_repo }}"
+    - "{{ fxpolicies_path | dirname }}"
 
 - name: Unix | Download extensions
   ansible.builtin.get_url:

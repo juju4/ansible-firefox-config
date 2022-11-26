@@ -56,6 +56,8 @@ $ vagrant ssh
 
 ## Troubleshooting & Known issues
 
+* Ubuntu 21.10+ is using firefox snap which has many implications. Policies are supported ([Enterprise policies for snap users #1717216](https://bugzilla.mozilla.org/show_bug.cgi?id=1717216)).
+
 ## References
 
 * [Policy Templates for Firefox, Github](https://github.com/mozilla/policy-templates)
