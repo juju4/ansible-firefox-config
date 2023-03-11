@@ -18,7 +18,11 @@
       "Install": ["cert1.der", "/home/username/cert2.pem"]
     },
     "Cookies": {
-      "Allow": ["http://example.org/"],
+      "Allow": [
+         "http://example.org/",
+         "https://drive.google.com",
+         "https://*.googleusercontent.com"
+      ],
       "Block": ["http://example.edu/"],
       "Default": true,
       "AcceptThirdParty": "never",

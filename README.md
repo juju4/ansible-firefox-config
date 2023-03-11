@@ -63,6 +63,7 @@ $ vagrant ssh
 * [Policy Templates for Firefox, Github](https://github.com/mozilla/policy-templates)
 * [Firefox blocked add-ons](https://blocked.cdn.mozilla.net/)
 * [Customizing Firefox Using policies.json](https://support.mozilla.org/en-US/kb/customizing-firefox-using-policiesjson)
+* [Download a file - Blocked third-party cookies can prevent Drive Web downloads](https://support.google.com/drive/answer/2423534)
 
 ## License
 
