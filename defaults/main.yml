@@ -56,3 +56,6 @@ firefox_allowonly_extensions:
   - id: "support@lastpass.com"
     mode: "allowed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi"
+  - id: "Tab-Session-Manager@sienori"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/tab-session-manager/latest.xpi"
