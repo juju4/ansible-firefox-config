@@ -84,8 +84,8 @@ jobs:
         run: |
           ls -l /etc/firefox/ || true
           ls -l /usr/lib64/firefox/browser/extensions /usr/lib/firefox-addons/extensions || true
-          cat /etc/firefox/firefox.js || true
-          cat /usr/lib/firefox/distribution/policies.json /usr/lib64/firefox/distribution/policies.json || true
+          cat /etc/firefox/firefox.js /Applications/Firefox.app/Contents/Resources/mozilla.cfg || true
+          cat /usr/lib/firefox/distribution/policies.json /usr/lib64/firefox/distribution/policies.json /etc/firefox/policies/policies.json /Applications/Firefox.app/Contents/Resources/distribution/policies.json || true
         if: ${{ always() }} and ${{ matrix.os != 'windows-latest'}}
         continue-on-error: true
       # https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode
