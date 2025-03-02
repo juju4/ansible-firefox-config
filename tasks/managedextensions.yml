@@ -1,0 +1,9 @@
+---
+# https://github.com/gorhill/uBlock/wiki/Deploying-uBlock-Origin
+# https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests#manifest_location
+
+- name: Deploy Managed storage per extension for custom settings
+  ansible.builtin.include_tasks: managedextension-policy.yml
+  loop: "{{ managed_storage_ext }}"
+  loop_control:
+    loop_var: item_ext

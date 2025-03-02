@@ -1,0 +1,17 @@
+---
+
+- name: Ensure target directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: root
+  loop: "{{ managed_storage_directories }}"
+
+- name: Push custom settings
+  ansible.builtin.template:
+    src: "{{ item_ext }}.j2"
+    dest: "{{ item }}/{{ item_ext }}"
+    mode: '0644'
+    owner: root
+  loop: "{{ managed_storage_directories }}"

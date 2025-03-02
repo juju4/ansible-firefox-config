@@ -63,3 +63,8 @@
     dest: "{{ fxpolicies_path }}"
     mode: '0644'
     backup: "{{ firefoxconfig_backup | default(false) }}"
+
+- name: Import managedextensions
+  ansible.builtin.import_tasks: managedextensions.yml
+  when:
+    - firefox_config_managedext_enable | bool

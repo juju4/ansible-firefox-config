@@ -60,5 +60,6 @@ firefox_allowonly_extensions:
     mode: "allowed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/tab-session-manager/latest.xpi"
 
+firefox_config_managedext_enable: true
 managed_storage_ext:
   - uBlock0@raymondhill.net.json
