@@ -1,0 +1,22 @@
+{
+  "name": "uBlock0@raymondhill.net",
+  "description": "ignored",
+  "type": "storage",
+  "data": {
+    "toAdd": {
+      "trustedSiteDirectives": [
+         "example.com"
+      ],
+      "filters": [
+         "# https://techpp.com/2024/05/28/disable-sign-in-with-google-on-websites/",
+         "||accounts.google.com/gsi/*$xhr,script,3p",
+         "# https://www.dedoimedo.com/computers/ublock-origin-custom-filters.html",
+         "@@||www.bing.com/fd/ls/l$image,domain=www.bing.com"
+      ],
+      "rules": [
+         "no-csp-reports: 10.* false",
+         "no-csp-reports: 192.168* false"
+      ]
+    }
+  }
+}

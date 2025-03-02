@@ -88,6 +88,12 @@ jobs:
           cat /usr/lib/firefox/distribution/policies.json /usr/lib64/firefox/distribution/policies.json /etc/firefox/policies/policies.json /Applications/Firefox.app/Contents/Resources/distribution/policies.json || true
         if: ${{ always() }} and ${{ matrix.os != 'windows-latest'}}
         continue-on-error: true
+      - name: After script - ublock
+        run: |
+          ls -l /usr/lib/mozilla/managed-storage || true
+          find /usr/lib/mozilla/managed-storage/ -type f -exec cat {} \; || true
+        if: ${{ always() }} and ${{ matrix.os != 'windows-latest'}}
+        continue-on-error: true
       # https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Headless_mode
       - name: After script - firefox headless
         run: |
