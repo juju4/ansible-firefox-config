@@ -14,9 +14,6 @@ firefox_windir_path: 'C:\Program Files (x86)\Mozilla Firefox'
 fxpolicies_template: policies.json
 
 firefox_allowonly_extensions:
-  - id: "https-everywhere@eff.org"
-    mode: "force_installed"
-    url: "https://addons.mozilla.org/firefox/downloads/latest/https-everywhere/latest.xpi"
   - id: "uBlock0@raymondhill.net"
     mode: "force_installed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
