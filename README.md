@@ -67,6 +67,7 @@ $ vagrant ssh
 * Microphone or Camera access
   * https://support.mozilla.org/en-US/kb/how-manage-your-camera-and-microphone-permissions
   * https://support.discord.com/hc/en-us/articles/204392448
+* [Improving Firefox Stability in the Enterprise by Reducing DLL Injection, Mar 2025](https://hacks.mozilla.org/2025/03/improving-firefox-stability-in-the-enterprise-by-reducing-dll-injection/), https://github.com/chromium/content_analysis_sdk, https://support.mozilla.org/en-US/kb/data-loss-prevention
 
 ## License
 
