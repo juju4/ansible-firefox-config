@@ -1,4 +1,4 @@
-[![Actions Status - Master](https://github.com/juju4/ansible-firefox-config/workflows/AnsibleCI/badge.svg)](https://github.com/juju4/ansible-firefox-config/actions?query=branch%3Amaster)
+[![Actions Status - Main](https://github.com/juju4/ansible-firefox-config/workflows/AnsibleCI/badge.svg)](https://github.com/juju4/ansible-firefox-config/actions?query=branch%3Amain)
 [![Actions Status - Devel](https://github.com/juju4/ansible-firefox-config/workflows/AnsibleCI/badge.svg?branch=devel)](https://github.com/juju4/ansible-firefox-config/actions?query=branch%3Adevel)
 # Firefox configuration ansible role
 
