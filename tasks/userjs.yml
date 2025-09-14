@@ -20,8 +20,8 @@
 
     - name: Download pyllyukko harden user.js
       ansible.builtin.get_url:
-        url: 'https://raw.githubusercontent.com/pyllyukko/user.js/b95fc165d72d49a8202eb56e0f2cf6bb273a801b/user.js'
-        checksum: 'sha256:330c54106c483a89167a90f0a6d3442b83f3407af000e632bdef6f105c5f2596'
+        url: 'https://raw.githubusercontent.com/pyllyukko/user.js/4657cccef52bb4b468ce943b338bafc52bf6b42e/user.js'
+        checksum: 'sha256:16f02f95c2adf2927d8c264800828cc2e609f845013ccabd81d79e76c77ed3b2'
         dest: "{{ fxjs_path }}-pyllyukko"
         mode: '0644'
         backup: yes
