@@ -55,7 +55,7 @@
 
 - name: Import userjs
   ansible.builtin.import_tasks: userjs.yml
-  when: fx_harden_userjs or fx_template_userjs
+  when: fx_harden_userjs | bool or (fx_template_userjs | length > 0)
 
 - name: Enable enterprise policies
   ansible.builtin.template:
