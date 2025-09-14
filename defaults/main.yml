@@ -59,6 +59,15 @@ firefox_allowonly_extensions:
   - id: "Tab-Session-Manager@sienori"
     mode: "allowed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/tab-session-manager/latest.xpi"
+  - id: "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/auto_tab_discard/latest.xpi"
+  - id: "{9efc0280-b125-400e-b53d-2d09d7effab4}"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/mitaka/latest.xpi"
+  - id: "wappalyzer@crunchlabz.com"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi"
 
 firefox_config_managedext_enable: true
 managed_storage_ext:
