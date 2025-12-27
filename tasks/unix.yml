@@ -7,21 +7,21 @@
 ## https://www.morbo.org/2018/05/linux-sandboxing-improvements-in_10.html
 
 - name: Include system-specific variables
-  ansible.builtin.include_vars: "{{ ansible_system }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_facts['system'] }}.yml"
 - name: Include RedHat-specific variables
   ansible.builtin.include_vars: "RedHat.yml"
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 - name: Include vars if snap
   ansible.builtin.include_vars: snap.yml
   when:
-    - (ansible_distribution == "Ubuntu" and ansible_distribution_major_version|int >= 22)
+    - (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version']|int >= 22)
 
 - name: Ensure package firefox is installed
   ansible.builtin.package:
     pkg: firefox
     state: present
-  when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'Debian' or ansible_facts['os_family'] == 'RedHat'
 
 - name: Ensure target directories exist
   ansible.builtin.file:

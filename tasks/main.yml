@@ -2,12 +2,12 @@
 
 - name: Import unix
   ansible.builtin.import_tasks: unix.yml
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
 
 - name: Import darwin
   ansible.builtin.import_tasks: darwin.yml
-  when: ansible_os_family == 'Darwin'
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - name: Import windows-firefox
   ansible.builtin.import_tasks: windows-firefox.yml
-  when: ansible_os_family == "Windows"
+  when: ansible_facts['os_family'] == "Windows"
