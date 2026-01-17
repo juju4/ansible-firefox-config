@@ -68,6 +68,9 @@ firefox_allowonly_extensions:
   - id: "wappalyzer@crunchlabz.com"
     mode: "allowed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi"
+  - id: "{5b22cb75-8e43-4f2a-bb9b-1da0655ae564}"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/archive-page/latest.xpi"
 
 firefox_config_managedext_enable: true
 managed_storage_ext:
