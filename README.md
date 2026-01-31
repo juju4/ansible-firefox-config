@@ -72,6 +72,7 @@ $ vagrant ssh
   * <https://github.com/arkenfox/user.js>
   * <https://github.com/pyllyukko/user.js>
   * <https://github.com/yokoffing/Betterfox>
+* [Remove AI features, telemetry data reporting, sponsored content, product integrations, and other annoyances from web browsers. ](https://github.com/corbindavenport/just-the-browser)
 
 ## License
 

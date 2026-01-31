@@ -74,6 +74,14 @@
       }
     },
     "ExtensionUpdate": true,
+    "FirefoxHome": {
+      "SponsoredStories": false,
+      "SponsoredTopSites": false,
+      "Stories": false
+    },
+    "GenerativeAI": {
+      "Enabled": false
+    },
     "InstallAddonsPermission": {
       "Allow": ["https://addons.mozilla.org"],
       "Default": true
@@ -89,7 +97,12 @@
     },
     "Permissions": {
       "Camera": {
-        "Allow": ["https://example.org"],
+        "Allow": [
+          "https://example.org",
+          "https://discord.com",
+          "https://teams.microsoft.com",
+          "https://meet.google.com"
+        ],
         "Block": ["https://example.edu"],
         "BlockNewRequests": true,
         "Locked": false
@@ -98,6 +111,7 @@
         "Allow": [
           "https://example.org",
           "https://discord.com",
+          "https://teams.microsoft.com",
           "https://meet.google.com"
         ],
         "Block": ["https://example.edu"],
@@ -138,7 +152,20 @@
     "RequestedLocales": "en-US",
     "SearchBar": "separate",
     "SearchEngines": {
-      "Default": "DuckDuckGo"
+      "Add": [
+        {
+          "Name": "DuckDuckGo NoAI",
+          "URLTemplate": "https://noai.duckduckgo.com/?q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://noai.duckduckgo.com/favicon.ico"
+        }
+      ],
+      "Remove": [
+        "Perplexity"
+      ]
+    }
+    "SearchEngines": {
+      "Default": "DuckDuckGo NoAI"
     },
     "SearchSuggestEnabled": false,
     "SSLVersionMin": "tls1.2"
