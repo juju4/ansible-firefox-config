@@ -32,7 +32,7 @@
       "Locked": false
     },
     "DisableAppUpdate": false,
-    "DisableBuiltinPDFViewer": false,
+    "DisableBuiltinPDFViewer": true,
     "DisableDeveloperTools": false,
     "DisableFirefoxAccounts": true,
     "DisableFirefoxStudies": true,
@@ -55,7 +55,7 @@
     "EnableTrackingProtection": { "Value": true, "Locked": false },
     "ExtensionSettings": {
       "*": {
-        "install_sources": ["https://addons.mozilla.org/"],
+        "install_sources": ["https://addons.mozilla.org/*"],
         "installation_mode": "blocked",
         "allowed_types": ["extension"]
       },
@@ -69,7 +69,7 @@
 {% endif %}
       "*": {
         "installation_mode": "allowed",
-        "install_sources": ["https://addons.mozilla.org/"],
+        "install_sources": ["https://addons.mozilla.org/*"],
         "allowed_types": ["dictionary", "langpack"]
       }
     },
@@ -166,13 +166,29 @@
           "URLTemplate": "https://www.mojeek.com/search?q={searchTerms}",
           "Method": "GET",
           "IconURL": "https://www.mojeek.com/favicon.ico"
+        },
+        {
+          "Name": "Ecosia",
+          "URLTemplate": "https://www.ecosia.org/search?method=index&q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://www.ecosia.org/favicon.ico"
+        },
+        {
+          "Name": "Qwant",
+          "URLTemplate": "https://www.qwant.com/?q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://www.qwant.com/favicon.ico"
+        },
+        {
+          "Name": "OldAvista",
+          "URLTemplate": "https://oldavista.com/search?q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://oldavista.com/favicon.ico"
         }
       ],
       "Remove": [
         "Perplexity"
-      ]
-    },
-    "SearchEngines": {
+      ],
       "Default": "DuckDuckGo NoAI"
     },
     "SearchSuggestEnabled": false,
