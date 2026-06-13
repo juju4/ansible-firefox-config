@@ -74,6 +74,9 @@ firefox_allowonly_extensions:
   - id: "weverify@localhost.dev"
     mode: "allowed"
     url: "https://addons.mozilla.org/firefox/downloads/latest/fake_news_debunker/latest.xpi"
+  - id: "dima@m82-project.org"
+    mode: "allowed"
+    url: "https://addons.mozilla.org/firefox/downloads/latest/dima_analyzer/latest.xpi"
 
 firefox_config_managedext_enable: true
 managed_storage_ext:
